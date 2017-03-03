@@ -1,0 +1,109 @@
+
+// Antes //
+
+
+public funtion post_confirm() {
+$id = Input::get("service_id);
+$servicio =  $ervice:: find($id)
+//dd($servicio);
+if ($servicio I = NULL) {
+     if ($servicio->status_id == '6' ) {
+        return Response::json(array('error' => '2'));
+{
+if ($servicio ->driver_id == NULL && $servicio->status-id == '1') {
+     $servicio = Service::update($sid, array (
+                         'driver_id => Input :: get('driver_id')
+                         'status_id => '2'
+                               //Up carro
+                             //, 'pad' => md5-(Input::get(ped))
+       ));
+       Driver ::update(Input::get('driver_id'), array(
+       "available" => '0'
+       ));
+       $driverTmp = Driver::find(Input::get('driver_id'));
+service : :update($id, array(
+'car_id' =>$driverTmp->car_id
+        //Up Carro
+        //,'pwd' =>md5(Input::get ('pwd'))
+ ));
+//Notificar a usuario 
+$pusmessage = 'Tu servicio ha sido confirmado';
+/* $servicio = Service::find ($id);
+$push = push::make();
+if (servicio->user->type =='1') 4{//iphone
+$pushhAns = $push->ios($servicio->user->uuid, $pushMessage);
+}else {
+$pushAns = $push->android($servicio->user->uuid, $pushMessage);
+}*/
+$servicio = service::find ($id);
+$push = Push::make();
+if ($servicio->user->uuid== ' ' ) {
+return Response::json(array('error'=> '0'));
+}
+if ($servicio->user->type == '1') {//iphone
+result = $push->ios($servicio->user->uuid $pushMesage, 1, 'hock.wav', 'Open', array('serviceId=> $servicio->id);
+}else {
+$result = $push->android2($servico->user->$pushMessage, 1 'default', open, array('service' =>$servicio->id));
+}
+retun Response::json(array('error'=>'0'));
+}else
+retun Response::json(array('error'=>'1'));
+}
+}else{
+retun Response::json(array('error'=>'3'));
+}
+}
+
+
+
+// DESPUES //
+
+
+public funtion post_confirm() {
+$id = Input ::get("service_id);
+$servicio =  $ervice::find($id)
+$pwd => md5(Input :: get(pwd));
+if ($servicio_dd != NULL) {
+     if ($servicio->status_id == '6' ) {
+        return Response :: json(array('error' => '2'));
+  {
+if ($servicio ->driver_id == NULL && $servicio->status-id == '1') {
+     $servicio = Service::update_carro($id, array (
+                         'driver_id => Input::get('driver_id')
+                         'status_id => '2'          
+       ));
+       Driver ::update(Input::get ('driver_id'), array(
+       "available" => '0'
+       ));
+       $driverTmp = Driver::find(Input ::get('driver_id'));
+       service::update_carro($id, array(
+       'car_id' =>$driverTmp->car_id
+ ));
+    $pusmessage = 'Tu servicio ha sido confirmado';
+    $servicio = service::find($id);
+    $push = Push::make();
+    if ($servicio->user->uuid== ' ' ) {
+       return Response::json(array('error'=> '0'));
+     }
+      if ($servicio->user->type == '1') {//iphone
+        result = $push->ios($servicio->user->uuid $pushMesage, 1, 'hock.wav', 'Open', array('serviceId=> $servicio->id);
+      }else {
+        $result = $push->android2($servico->user->$pushMessage, 1 'default', open, array('service' =>$servicio->id));
+      }
+      retun Response::json(array('error'=>'0'));
+      }else
+      retun Response::json(array('error'=>'1'));
+      }
+     }else{
+      retun Response::json(array('error'=>'3'));
+  }
+}
+
+
+
+
+   
+
+
+
+   
